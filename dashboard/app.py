@@ -49,25 +49,8 @@ def dashboard():
 @app.route('/tables', methods=["GET"])
 def tables():
   try:
-    botusers = []
-
-    tbl="<thead><tr><th>Name</th><th>Email ID</th><th>Gender</th><th>Address</th><th>Contact No</th></tr></thead>"
-    botusers.append(tbl)
-
-    for y in db.gvpbot.find():
-      fname = "%s"%y['fName']
-      botusers.append(fname)
-      lname = "%s"%y['lName']
-      botusers.append(lname)
-      # email = "<td>%s</td>"%y['Email_ID']
-      # botusers.append(email)
-      gender = "%s"%y['Gender']
-      botusers.append(gender)
-      address = "%s"%y["Address"]
-      botusers.append(address)
-      # mobile = "%s"%y['Mobile_No']
-      # botusers.append(mobile)
-    return render_template("tables.html", fname=fname, lname=lname, gender=gender, address=address)
+    botusers = db.gvpbot.find({},{"fName":"1","lName":"1","Email_ID":"1","Gender":"1","Address":"1","Mobile_No":"1"})
+    return render_template("tables.html", botusers=botusers)
   except Exception as e:
     return dumps({'error' : str(e)})
 
