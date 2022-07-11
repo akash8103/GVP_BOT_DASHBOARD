@@ -30,13 +30,15 @@
                     </tr>
                   </tfoot>
                   <tbody>
+                    {% for buser in botusers %}
                     <tr>
-                      <td>{{ fname }} {{ lname }}</td>
-                      <td>{{ email }}</td>
-                      <td>{{ gender }}</td>
-                      <td>{{ address }}</td>
-                      <td>{{ mobile }}</td>
+                      <td>{{ buser['fName'] }} {{ buser['lName'] }}</td>
+                      <td>{{ buser['Email_ID'] }}</td>
+                      <td>{{ buser['Gender'] }}</td>
+                      <td>{{ buser['Address'] }}</td>
+                      <td>{{ buser['Mobile_No'] }}</td>
                     </tr>
+                    {% endfor %}
                   </tbody>
                 </table>
               </div>
